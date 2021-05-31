@@ -6,12 +6,10 @@ namespace Scn\DeeplApiConnector\Handler;
 
 use Scn\DeeplApiConnector\Model\TranslationConfigInterface;
 
-final class DeeplTranslationRequestHandler implements DeeplRequestHandlerInterface
+final class DeeplTranslationRequestHandler extends AbstractDeeplRequestHandler implements DeeplRequestHandlerInterface
 {
     const SEPARATOR = ',';
-    const API_ENDPOINT = 'https://api.deepl.com/v2/translate';
-
-    private $authKey;
+    const API_ENDPOINT = '/v2/translate';
 
     private $translation;
 
@@ -24,11 +22,6 @@ final class DeeplTranslationRequestHandler implements DeeplRequestHandlerInterfa
     public function getMethod(): string
     {
         return DeeplRequestHandlerInterface::METHOD_POST;
-    }
-
-    public function getPath(): string
-    {
-        return static::API_ENDPOINT;
     }
 
     public function getBody(): array

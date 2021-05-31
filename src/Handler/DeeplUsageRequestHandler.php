@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Scn\DeeplApiConnector\Handler;
 
-final class DeeplUsageRequestHandler implements DeeplRequestHandlerInterface
+final class DeeplUsageRequestHandler extends AbstractDeeplRequestHandler implements DeeplRequestHandlerInterface
 {
-    const API_ENDPOINT = 'https://api.deepl.com/v2/usage';
-
-    private $authKey;
+    const API_ENDPOINT = '/v2/usage';
 
     public function __construct(string $authKey)
     {
@@ -18,11 +16,6 @@ final class DeeplUsageRequestHandler implements DeeplRequestHandlerInterface
     public function getMethod(): string
     {
         return DeeplRequestHandlerInterface::METHOD_GET;
-    }
-
-    public function getPath(): string
-    {
-        return static::API_ENDPOINT;
     }
 
     public function getBody(): array

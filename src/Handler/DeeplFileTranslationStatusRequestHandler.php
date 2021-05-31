@@ -6,11 +6,9 @@ namespace Scn\DeeplApiConnector\Handler;
 
 use Scn\DeeplApiConnector\Model\FileSubmissionInterface;
 
-final class DeeplFileTranslationStatusRequestHandler implements DeeplRequestHandlerInterface
+final class DeeplFileTranslationStatusRequestHandler extends AbstractDeeplRequestHandler implements DeeplRequestHandlerInterface
 {
-    const API_ENDPOINT = 'https://api.deepl.com/v2/document/%s';
-
-    private $authKey;
+    const API_ENDPOINT = '/v2/document/%s';
 
     private $fileSubmission;
 
@@ -27,7 +25,7 @@ final class DeeplFileTranslationStatusRequestHandler implements DeeplRequestHand
 
     public function getPath(): string
     {
-        return sprintf(static::API_ENDPOINT, $this->fileSubmission->getDocumentId());
+        return sprintf(parent::getPath(), $this->fileSubmission->getDocumentId());
     }
 
     public function getBody(): array

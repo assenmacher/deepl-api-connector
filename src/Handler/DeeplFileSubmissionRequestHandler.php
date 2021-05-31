@@ -6,11 +6,9 @@ namespace Scn\DeeplApiConnector\Handler;
 
 use Scn\DeeplApiConnector\Model\FileTranslationConfigInterface;
 
-final class DeeplFileSubmissionRequestHandler implements DeeplRequestHandlerInterface
+final class DeeplFileSubmissionRequestHandler extends AbstractDeeplRequestHandler implements DeeplRequestHandlerInterface
 {
-    const API_ENDPOINT = 'https://api.deepl.com/v2/document';
-
-    private $authKey;
+    const API_ENDPOINT = '/v2/document';
 
     private $fileTranslation;
 
@@ -23,11 +21,6 @@ final class DeeplFileSubmissionRequestHandler implements DeeplRequestHandlerInte
     public function getMethod(): string
     {
         return DeeplRequestHandlerInterface::METHOD_POST;
-    }
-
-    public function getPath(): string
-    {
-        return static::API_ENDPOINT;
     }
 
     public function getBody(): array
