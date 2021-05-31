@@ -13,6 +13,6 @@ abstract class AbstractDeeplRequestHandler
 
     public function getPath(): string
     {
-        return (strpos($this->authKey, self::API_TEST_KEY_PART) !== false ? self::API_DOMAIN : self::API_TEST_DOMAIN).static::API_ENDPOINT;
+        return (strpos($this->authKey, self::API_TEST_KEY_PART) === false ? self::API_DOMAIN : self::API_TEST_DOMAIN).static::API_ENDPOINT;
     }
 }
