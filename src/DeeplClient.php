@@ -128,7 +128,9 @@ class DeeplClient implements DeeplClientInterface
                 $requestHandler->getBody()
             );
 
-            if (in_array('application/json', $response->getHeader('Content-Type'))) {
+            $contentHeader = $response->getHeader('Content-Type');
+
+            if (in_array('application/json', $contentHeader) || in_array('application/json; charset=utf-8', $contentHeader)) {
                 return json_decode($response->getBody()->getContents());
             } else {
                 $content = new stdClass();
