@@ -20,7 +20,7 @@ final class DeeplFileRequestHandler implements DeeplRequestHandlerInterface
 
     public function getMethod(): string
     {
-        return DeeplRequestHandlerInterface::METHOD_GET;
+        return DeeplRequestHandlerInterface::METHOD_POST;
     }
 
     public function getPath(): string
@@ -31,9 +31,11 @@ final class DeeplFileRequestHandler implements DeeplRequestHandlerInterface
     public function getBody(): array
     {
         return [
+            'headers' => [
+                'Authorization' => 'DeepL-Auth-Key '.$this->authKey,
+            ],
             'form_params' => array_filter(
                 [
-                    'auth_key' => $this->authKey,
                     'document_key' => $this->fileSubmission->getDocumentKey(),
                 ]
             ),

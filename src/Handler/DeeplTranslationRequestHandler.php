@@ -34,6 +34,9 @@ final class DeeplTranslationRequestHandler implements DeeplRequestHandlerInterfa
     public function getBody(): array
     {
         return [
+            'headers' => [
+                'Authorization' => 'DeepL-Auth-Key '.$this->authKey,
+            ],
             'form_params' => array_filter(
                 [
                     'text' => $this->translation->getText(),
@@ -50,7 +53,6 @@ final class DeeplTranslationRequestHandler implements DeeplRequestHandlerInterfa
                     'ignore_tags' => implode(static::SEPARATOR, (array) $this->translation->getIgnoreTags()),
                     'split_sentences' => (string) $this->translation->getSplitSentences(),
                     'preserve_formatting' => $this->translation->getPreserveFormatting(),
-                    'auth_key' => $this->authKey,
                 ]
             ),
         ];

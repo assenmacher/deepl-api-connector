@@ -33,11 +33,10 @@ final class DeeplFileSubmissionRequestHandler implements DeeplRequestHandlerInte
     public function getBody(): array
     {
         return [
+            'headers' => [
+                'Authorization' => 'DeepL-Auth-Key '.$this->authKey,
+            ],
             'multipart' => [
-                [
-                    'name' => 'auth_key',
-                    'contents' => $this->authKey,
-                ],
                 [
                     'name' => 'file',
                     'filename' => $this->fileTranslation->getFileName(),
